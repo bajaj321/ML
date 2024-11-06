@@ -5,10 +5,12 @@ clear all
 load hald
 x=ingredients;
 y=heat;
+
 %y=m*x----> Calulate the slope mamually
 % First method is Pseudo-inverse
 m1=x\y;
 x1 = [ones(length(x),1) x];
+
 % find the bias
 b0=mean(y)-m1(1,1)*mean(x(:,1))-m1(2,1)*mean(x(:,2))-m1(3,1)*mean(x(:,3))-
 m1(4,1)*mean(x(:,4));
@@ -19,6 +21,7 @@ legend(["Acutal Label(Heat)" "Model"])
 title("Model using Psudeo-inverse")
 xlabel("Ingridents")
 ylabel("Heat")
+
 % calculate the slope using matlab inbuilt function
 c=fitlm(x,y);
 y1=62.405+1.5511*x(:,1)+0.51017*x(:,2)+0.10191*x(:,3)-0.14406*x(:,4);
@@ -28,6 +31,7 @@ title("Model using MATLAB inbuilt function")
 axis tight
 xlabel("Ingridents")
 ylabel("Heat")
+
 % calculate the slope using SVD --> Singular value decomposition
 [u,s,v]=svd(x,'econ');
 m2=v*inv(s)*u'*y;
@@ -39,6 +43,7 @@ title("Model using SVD")
 axis tight
 xlabel("Ingridents")
 ylabel("Heat")
+
 % errors between different models
 m_In_error=norm(y-y1,inf); % MATLAB inbuilt function error
 p_err=norm(y-y2,inf);
