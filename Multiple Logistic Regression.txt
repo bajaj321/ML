@@ -9,6 +9,7 @@ y = [zeros(num_points, 1); ones(num_points, 1)];
 X = [ones(size(X, 1), 1), X];
 % Sigmoid function
 sigmoid = @(z) 1 ./ (1 + exp(-z));
+
 % Cost function
 costFunction = @(theta) (-1/length(y)) * sum(y .*
 log(sigmoid(X * theta)) + (1 - y) .* log(1 -sigmoid(X * theta)));
@@ -22,6 +23,7 @@ for iter = 1:num_iters
  gradient = (1/m) * X' * (sigmoid(X * theta) - y);
  theta = theta - alpha * gradient;
 end
+
 % Plot the data
 figure;
 hold on;
