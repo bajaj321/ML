@@ -4,6 +4,7 @@ Y=chd; % outputs
 scatter(X,Y,'r')
 figure,plot(X,Y,'ro');
 hold on;
+
 %Matlab inbuilt function
 c4=fitglm(X,Y,'Distribution','binomial','Link','logit');
 x_pred=linspace(min(X),max(X),100);
@@ -22,6 +23,7 @@ for i=1:length(Y)
  aa(i,1)=1;
  end
 end
+
 % concatenate my predicted input and output
 cc=[x_pred aa'];
 bb=[];
