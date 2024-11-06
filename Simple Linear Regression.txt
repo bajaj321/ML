@@ -6,6 +6,7 @@ b0=mean(Y)-m1*mean(X); % calculate the Y-intercept
 plot(Y,'r','LineWidth',10),hold on,plot(X*m1+b0,'go','Linewidth',10);
 grid on
 axis tight
+
 % using SVD
 [u,s,v]=svd(X,'econ');
 m2=v*inv(s)*u'*Y;
@@ -17,12 +18,14 @@ axis tight
 c=fitlm(X,Y,"linear");
 y1=4.1617+X*15.509;
 figure,plot(Y,'r','LineWidth',10),hold on,plot(y1,'go','Linewidth',10);
+
 %prediction
 c1=predict(c,[11;12;13;14;16;18]);
 c1=floor(c1); % Minutes data(Output)
 c2=[11;12;13;14;16;18]; % Units data(Input)
 % Finding weigths for new dataset
 m3=c2\c1;
+
 % using SVD finding new weigths
 [u1,s1,v1]=svd(c2,'econ');
 m4=v1*inv(s1)*u1'*c1;
